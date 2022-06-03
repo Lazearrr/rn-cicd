@@ -9,7 +9,9 @@ pipeline {
             }
         }
         stage('build') {
-            echo 'Building using Gradle'
+            steps {
+                echo 'Build steps go here'
+            }
         }
     }
 }
