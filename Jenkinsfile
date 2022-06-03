@@ -1,25 +1,21 @@
 pipeline {
     agent any
-    environment {
-        GIT_USERNAME = 'Lazearrr'
-        GIT_PASSWORD = 'Lowdog541.'
-
-    }
 
     stages {
         stage('clone') {
             steps {
                 echo 'Cloning Repo from Github'
-                sh("""
-                git config --global credential.username ${GIT_USERNAME}
-                git config --global credential.password ${GIT_PASSWORD}
-                git clone https://github.com/lklima/gnome.git
-                """)
+                git 'https://github.com/lklima/gnome'
             }
         }
         stage('build') {
             steps {
                 echo 'Build steps go here'
+            }
+        }
+        stage('save build logs'){
+            steps {
+                sh 'cp ${env.BUILD_LOG) /tmp/build_logs'
             }
         }
     }
